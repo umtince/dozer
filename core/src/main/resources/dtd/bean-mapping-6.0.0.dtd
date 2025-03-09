@@ -42,8 +42,12 @@
                              non-cumulative indicates the element will be added or an existing entry will be updated.
          custom-converters   The custom converters to be registered with Dozer.
         copy-by-references   Indicates which class types should always be copied by reference
+        is-accessible-list   Indicates whether Dozer bypasses getter/setter methods and accesses the list field directly.
+                             This will typically be set to "false".  The default value is "false".  If set to "true", the
+                             getter/setter methods will NOT be invoked.  You would want to set this to "true" if
+                             the field is lacking a getter or setter method.
 -->
-<!ELEMENT configuration ( stop-on-errors?, date-format?, wildcard?, trim-strings?, map-null?, map-empty-string?, bean-factory?, relationship-type?, custom-converters*, copy-by-references*, allowed-exceptions* ) >
+<!ELEMENT configuration ( stop-on-errors?, date-format?, wildcard?, trim-strings?, map-null?, map-empty-string?, bean-factory?, relationship-type?, custom-converters*, copy-by-references*, allowed-exceptions*, is-accessible-list? ) >
 
 
 <!--
@@ -232,6 +236,7 @@
 <!ELEMENT is-accessible ( #PCDATA ) >
 <!ELEMENT allowed-exceptions ( exception+ ) >
 <!ELEMENT exception ( #PCDATA ) >
+<!ELEMENT is-accessible-list ( #PCDATA ) >
 
 <!ELEMENT converter ( class-a, class-b ) >
 <!ATTLIST converter type CDATA #REQUIRED >

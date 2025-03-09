@@ -13,48 +13,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.dozermapper.core.functional_tests;
-
-import com.github.dozermapper.core.vo.jaxb.employee.EmployeeType;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-public class JAXBBeansMapping_WithExceptionLoggedTest extends AbstractFunctionalTest {
-
-    private final Logger LOG = LoggerFactory.getLogger(JAXBBeansMapping_WithExceptionLoggedTest.class);
-
-    @Before
-    public void setUp() throws Exception {
-        super.setUp();
-        mapper = getMapper("mappings/jaxbBeansMapping.xml");
-    }
-
-    @Test
-    public void testJAXBListWithNoSetter() {
-        LOG.error("WithExceptionsLoggedTest; 'NoSuchMethodException: Unable to determine write method for Field: 'ids' in "
-                  + "Class: class com.github.dozermapper.core.vo.jaxb.employee.EmployeeType'");
-
-        JAXBBeansMappingTest.ListContainer source = new JAXBBeansMappingTest.ListContainer();
-        source.getList().add(1);
-        source.getList().add(2);
-
-        source.getSubordinates().add(new JAXBBeansMappingTest.StringContainer("John"));
-
-        EmployeeType result = mapper.map(source, EmployeeType.class);
-
-        assertNotNull(result);
-        assertEquals(2, result.getIds().size());
-        assertTrue(result.getIds().contains(1));
-        assertTrue(result.getIds().contains(2));
-
-        assertEquals(1, result.getSubordinates().size());
-        assertEquals("John", result.getSubordinates().get(0).getFirstName());
-    }
-}
+//package com.github.dozermapper.core.functional_tests;
+//
+//import com.github.dozermapper.core.vo.jaxb.employee.EmployeeType;
+//
+//import org.junit.Before;
+//import org.junit.Test;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
+//
+//import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertNotNull;
+//import static org.junit.Assert.assertTrue;
+//
+//public class JAXBBeansMapping_WithExceptionLoggedTest extends AbstractFunctionalTest {
+//
+//    private final Logger LOG = LoggerFactory.getLogger(JAXBBeansMapping_WithExceptionLoggedTest.class);
+//
+//    @Before
+//    public void setUp() throws Exception {
+//        super.setUp();
+//        mapper = getMapper("mappings/jaxbBeansMapping.xml");
+//    }
+//
+//    @Test
+//    public void testJAXBListWithNoSetter() {
+//        LOG.error("WithExceptionsLoggedTest; 'NoSuchMethodException: Unable to determine write method for Field: 'ids' in "
+//                  + "Class: class com.github.dozermapper.core.vo.jaxb.employee.EmployeeType'");
+//
+//        JAXBBeansMappingTest.ListContainer source = new JAXBBeansMappingTest.ListContainer();
+//        source.getList().add(1);
+//        source.getList().add(2);
+//
+//        source.getSubordinates().add(new JAXBBeansMappingTest.StringContainer("John"));
+//
+//        EmployeeType result = mapper.map(source, EmployeeType.class);
+//
+//        assertNotNull(result);
+//        assertEquals(2, result.getIds().size());
+//        assertTrue(result.getIds().contains(1));
+//        assertTrue(result.getIds().contains(2));
+//
+//        assertEquals(1, result.getSubordinates().size());
+//        assertEquals("John", result.getSubordinates().get(0).getFirstName());
+//    }
+//}

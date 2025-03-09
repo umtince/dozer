@@ -51,6 +51,7 @@ public class ELConfigurationDefinition extends ConfigurationDefinition {
             this.copyByReferences = new ELCopyByReferencesDefinition(elEngine, copy.getCopyByReferences());
             this.allowedExceptions = new ELAllowedExceptionsDefinition(elEngine, copy.getAllowedExceptions());
             this.variables = new ELVariablesDefinition(elEngine, copy.getVariables());
+            this.isAccessibleList = copy.getAccessibleList();
         }
     }
 

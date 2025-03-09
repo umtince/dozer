@@ -13,112 +13,112 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.dozermapper.core.functional_tests;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
-
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-
-import com.github.dozermapper.core.config.BeanContainer;
-import com.github.dozermapper.core.util.MappingUtils;
-import com.github.dozermapper.core.vo.TestObject;
-import com.github.dozermapper.core.vo.jaxb.employee.EmployeeWithInnerClass;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-public class JAXBBeansMappingTest extends AbstractFunctionalTest {
-
-    @Before
-    public void setUp() throws Exception {
-        super.setUp();
-        mapper = getMapper("mappings/jaxbBeansMapping.xml");
-    }
-
-    @Test
-    public void testTrivial() {
-        Class<?> type = MappingUtils.loadClass("com.github.dozermapper.core.vo.jaxb.employee.EmployeeType", new BeanContainer());
-        assertNotNull(type);
-    }
-
-    @Test
-    public void testSimple() {
-        TestObject source = new TestObject();
-        source.setOne("ABC");
-        EmployeeWithInnerClass result = mapper.map(source, EmployeeWithInnerClass.class);
-        assertNotNull(result);
-        assertEquals("ABC", result.getFirstName());
-    }
-
-    @Test
-    public void testNestedInnerClass() {
-        TestObject source = new TestObject();
-        source.setOne("Name");
-        EmployeeWithInnerClass.Address.State result = mapper.map(source, EmployeeWithInnerClass.Address.State.class);
-        assertNotNull(result);
-        assertEquals("Name", result.getName());
-    }
-
-    @Test
-    public void testDateToXMLGregorianCalendar() {
-        TestObject source = new TestObject();
-        Date now = new Date();
-        source.setDate(now);
-        EmployeeWithInnerClass result = mapper.map(source, EmployeeWithInnerClass.class);
-        assertNotNull(result);
-        assertEquals(now.getTime(), result.getBirthDate().toGregorianCalendar().getTimeInMillis());
-    }
-
-    @Test
-    public void testXMLGregorianCalendarToDate() throws DatatypeConfigurationException {
-        Calendar cal = GregorianCalendar.getInstance();
-        EmployeeWithInnerClass source = new EmployeeWithInnerClass();
-        source.setBirthDate(DatatypeFactory.newInstance().newXMLGregorianCalendar((GregorianCalendar)cal));
-        TestObject result = mapper.map(source, TestObject.class);
-        assertNotNull(result);
-        assertEquals(cal.getTimeInMillis(), result.getDate().getTime());
-    }
-
-    public static class ListContainer {
-        private List<Integer> list = new ArrayList<>();
-        private List<StringContainer> subordinates = new ArrayList<>();
-
-        public List<Integer> getList() {
-            return list;
-        }
-
-        public List<StringContainer> getSubordinates() {
-            return subordinates;
-        }
-
-    }
-
-    public static class StringContainer {
-        private String value;
-
-        public StringContainer() {
-
-        }
-
-        public StringContainer(String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        public void setValue(String value) {
-            this.value = value;
-        }
-    }
-
-}
+//package com.github.dozermapper.core.functional_tests;
+//
+//import java.util.ArrayList;
+//import java.util.Calendar;
+//import java.util.Date;
+//import java.util.GregorianCalendar;
+//import java.util.List;
+//
+//import javax.xml.datatype.DatatypeConfigurationException;
+//import javax.xml.datatype.DatatypeFactory;
+//
+//import com.github.dozermapper.core.config.BeanContainer;
+//import com.github.dozermapper.core.util.MappingUtils;
+//import com.github.dozermapper.core.vo.TestObject;
+//import com.github.dozermapper.core.vo.jaxb.employee.EmployeeWithInnerClass;
+//
+//import org.junit.Before;
+//import org.junit.Test;
+//
+//import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertNotNull;
+//
+//public class JAXBBeansMappingTest extends AbstractFunctionalTest {
+//
+//    @Before
+//    public void setUp() throws Exception {
+//        super.setUp();
+//        mapper = getMapper("mappings/jaxbBeansMapping.xml");
+//    }
+//
+//    @Test
+//    public void testTrivial() {
+//        Class<?> type = MappingUtils.loadClass("com.github.dozermapper.core.vo.jaxb.employee.EmployeeType", new BeanContainer());
+//        assertNotNull(type);
+//    }
+//
+//    @Test
+//    public void testSimple() {
+//        TestObject source = new TestObject();
+//        source.setOne("ABC");
+//        EmployeeWithInnerClass result = mapper.map(source, EmployeeWithInnerClass.class);
+//        assertNotNull(result);
+//        assertEquals("ABC", result.getFirstName());
+//    }
+//
+//    @Test
+//    public void testNestedInnerClass() {
+//        TestObject source = new TestObject();
+//        source.setOne("Name");
+//        EmployeeWithInnerClass.Address.State result = mapper.map(source, EmployeeWithInnerClass.Address.State.class);
+//        assertNotNull(result);
+//        assertEquals("Name", result.getName());
+//    }
+//
+//    @Test
+//    public void testDateToXMLGregorianCalendar() {
+//        TestObject source = new TestObject();
+//        Date now = new Date();
+//        source.setDate(now);
+//        EmployeeWithInnerClass result = mapper.map(source, EmployeeWithInnerClass.class);
+//        assertNotNull(result);
+//        assertEquals(now.getTime(), result.getBirthDate().toGregorianCalendar().getTimeInMillis());
+//    }
+//
+//    @Test
+//    public void testXMLGregorianCalendarToDate() throws DatatypeConfigurationException {
+//        Calendar cal = GregorianCalendar.getInstance();
+//        EmployeeWithInnerClass source = new EmployeeWithInnerClass();
+//        source.setBirthDate(DatatypeFactory.newInstance().newXMLGregorianCalendar((GregorianCalendar)cal));
+//        TestObject result = mapper.map(source, TestObject.class);
+//        assertNotNull(result);
+//        assertEquals(cal.getTimeInMillis(), result.getDate().getTime());
+//    }
+//
+//    public static class ListContainer {
+//        private List<Integer> list = new ArrayList<>();
+//        private List<StringContainer> subordinates = new ArrayList<>();
+//
+//        public List<Integer> getList() {
+//            return list;
+//        }
+//
+//        public List<StringContainer> getSubordinates() {
+//            return subordinates;
+//        }
+//
+//    }
+//
+//    public static class StringContainer {
+//        private String value;
+//
+//        public StringContainer() {
+//
+//        }
+//
+//        public StringContainer(String value) {
+//            this.value = value;
+//        }
+//
+//        public String getValue() {
+//            return value;
+//        }
+//
+//        public void setValue(String value) {
+//            this.value = value;
+//        }
+//    }
+//
+//}

@@ -18,8 +18,10 @@ package com.github.dozermapper.core.propertydescriptor;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import com.github.dozermapper.core.classmap.Configuration;
 import com.github.dozermapper.core.config.BeanContainer;
 import com.github.dozermapper.core.factory.DestBeanCreator;
 import com.github.dozermapper.core.fieldmap.HintContainer;
@@ -46,7 +48,8 @@ public final class PropertyDescriptorFactory {
                                                          boolean isIndexed, int index, String name, String key, boolean isSelfReferencing,
                                                          String oppositeFieldName, HintContainer srcDeepIndexHintContainer,
                                                          HintContainer destDeepIndexHintContainer, String beanFactory,
-                                                         BeanContainer beanContainer, DestBeanCreator destBeanCreator) {
+                                                         BeanContainer beanContainer, DestBeanCreator destBeanCreator,
+                                                         Configuration globalConfiguration) {
         DozerPropertyDescriptor desc = null;
 
         // Raw Map types or custom map-get-method/set specified
@@ -101,6 +104,12 @@ public final class PropertyDescriptorFactory {
         if (desc == null) {
             // Everything else. It must be a normal bean with normal custom get/set methods
             desc = new JavaBeanPropertyDescriptor(clazz, name, isIndexed, index, srcDeepIndexHintContainer, destDeepIndexHintContainer, beanContainer, destBeanCreator);
+        }
+
+        if (desc.getPropertyType().isAssignableFrom(List.class) && !(desc instanceof FieldPropertyDescriptor) && Objects.nonNull(globalConfiguration) && globalConfiguration.getAccessibleList()) {
+            //If property is of type List and was not implicitly declared is-accessible either by at field mapping or class mapping but declared is-accessible by
+            //global configuration, we must treat it as accessible
+            desc = new FieldPropertyDescriptor(clazz, name, isIndexed, index, srcDeepIndexHintContainer, destDeepIndexHintContainer, destBeanCreator);
         }
 
         return desc;

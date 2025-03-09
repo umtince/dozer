@@ -36,6 +36,7 @@ public final class DozerConstants {
     public static final boolean DEFAULT_MAP_NULL_POLICY = true;
     public static final boolean DEFAULT_MAP_EMPTY_STRING_POLICY = true;
     public static final boolean DEFAULT_TRIM_STRINGS_POLICY = false;
+    public static final boolean DEFAULT_ACCESSIBLE_LIST_POLICY = false;
     public static final RelationshipType DEFAULT_RELATIONSHIP_TYPE_POLICY = RelationshipType.CUMULATIVE;
     public static final String DEFAULT_MAPPING_FILE = "dozerBeanMapping.xml";
 

@@ -21,10 +21,7 @@ import java.util.concurrent.ConcurrentMap;
 import com.github.dozermapper.core.BeanBuilder;
 import com.github.dozermapper.core.MappingException;
 import com.github.dozermapper.core.builder.BuilderUtil;
-import com.github.dozermapper.core.classmap.ClassMap;
-import com.github.dozermapper.core.classmap.DozerClass;
-import com.github.dozermapper.core.classmap.MappingDirection;
-import com.github.dozermapper.core.classmap.RelationshipType;
+import com.github.dozermapper.core.classmap.*;
 import com.github.dozermapper.core.config.BeanContainer;
 import com.github.dozermapper.core.factory.DestBeanCreator;
 import com.github.dozermapper.core.propertydescriptor.DozerPropertyDescriptor;
@@ -394,7 +391,7 @@ public abstract class FieldMap implements Cloneable {
                                                                                                  getSrcFieldName(), getSrcFieldKey(), isSrcSelfReferencing(), getDestFieldName(),
                                                                                                  getSrcDeepIndexHintContainer(),
                                                                                                  getDestDeepIndexHintContainer(), classMap.getSrcClassBeanFactory(), beanContainer,
-                                                                                                 destBeanCreator);
+                                                                                                 destBeanCreator, classMap.getGlobalConfiguration());
             this.srcPropertyDescriptorMap.putIfAbsent(runtimeSrcClass, descriptor);
             result = descriptor;
         }
@@ -417,7 +414,7 @@ public abstract class FieldMap implements Cloneable {
                                                                                                  getDestFieldName(), getDestFieldKey(), isDestSelfReferencing(), getSrcFieldName(),
                                                                                                  getSrcDeepIndexHintContainer(), getDestDeepIndexHintContainer(),
                                                                                                  classMap.getDestClassBeanFactory(),
-                                                                                                 beanContainer, destBeanCreator);
+                                                                                                 beanContainer, destBeanCreator, classMap.getGlobalConfiguration());
 
             this.destPropertyDescriptorMap.putIfAbsent(runtimeDestClass, descriptor);
             result = descriptor;

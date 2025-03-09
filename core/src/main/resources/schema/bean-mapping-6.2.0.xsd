@@ -38,6 +38,7 @@
                 <xs:element minOccurs="0" name="map-empty-string" type="xs:boolean"/>
                 <xs:element minOccurs="0" name="bean-factory" type="xs:string"/>
                 <xs:element minOccurs="0" name="relationship-type" type="tns:relationship"/>
+                <xs:element minOccurs="0" name="is-accessible-list" type="xs:boolean"/>
                 <xs:element minOccurs="0" ref="tns:custom-converters"/>
                 <xs:element minOccurs="0" ref="tns:copy-by-references"/>
                 <xs:element minOccurs="0" ref="tns:allowed-exceptions"/>

@@ -36,6 +36,7 @@ public class Configuration {
     private String dateFormat;
     private String beanFactory;
     private RelationshipType relationshipType;
+    private Boolean accessibleList;
 
     private final CustomConverterContainer customConverters = new CustomConverterContainer();
     private final CopyByReferenceContainer copyByReferences = new CopyByReferenceContainer();
@@ -123,6 +124,14 @@ public class Configuration {
 
     public void setRelationshipType(RelationshipType relationshipType) {
         this.relationshipType = relationshipType;
+    }
+
+    public Boolean getAccessibleList() {
+        return accessibleList;
+    }
+
+    public void setAccessibleList(Boolean accessibleList) {
+        this.accessibleList = accessibleList;
     }
 
     @Override

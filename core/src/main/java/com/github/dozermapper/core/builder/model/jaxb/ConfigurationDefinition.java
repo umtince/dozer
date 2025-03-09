@@ -113,6 +113,9 @@ public class ConfigurationDefinition {
     @XmlElement(name = "variables")
     protected VariablesDefinition variables;
 
+    @XmlElement(name = "is-accessible-list")
+    protected Boolean isAccessibleList;
+
     public ConfigurationDefinition() {
         this(null);
     }
@@ -205,6 +208,12 @@ public class ConfigurationDefinition {
         return variables;
     }
 
+    public ConfigurationDefinition withAccessibleList(Boolean isAccessibleList) {
+        setAccessibleList(isAccessibleList);
+
+        return this;
+    }
+
     public MappingsDefinition end() {
         return parent;
     }
@@ -226,6 +235,7 @@ public class ConfigurationDefinition {
         config.setTrimStrings(trimStrings == null ? DozerConstants.DEFAULT_TRIM_STRINGS_POLICY : trimStrings);
         config.setWildcard(wildcard == null ? DozerConstants.DEFAULT_WILDCARD_POLICY : wildcard);
         config.setWildcardCaseInsensitive(wildcardCaseInsensitive == null ? DozerConstants.DEFAULT_WILDCARD_CASE_INSENSITIVE_POLICY : wildcardCaseInsensitive);
+        config.setAccessibleList(isAccessibleList == null ? DozerConstants.DEFAULT_ACCESSIBLE_LIST_POLICY : isAccessibleList);
 
         if (allowedExceptions != null) {
             config.getAllowedExceptions().getExceptions().addAll(allowedExceptions.build(beanContainer));
@@ -351,5 +361,13 @@ public class ConfigurationDefinition {
 
     protected void setVariables(VariablesDefinition variables) {
         this.variables = variables;
+    }
+
+    public Boolean getAccessibleList() {
+        return isAccessibleList;
+    }
+
+    public void setAccessibleList(Boolean accessibleList) {
+        isAccessibleList = accessibleList;
     }
 }

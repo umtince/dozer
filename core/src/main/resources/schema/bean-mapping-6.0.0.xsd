@@ -66,6 +66,11 @@
                 custom-converters The custom converters to be registered with Dozer.
 
                 copy-by-references Indicates which class types should always be copied by reference
+
+                is-accessible-list Indicates whether Dozer bypasses getter/setter methods and accesses the list field directly.
+                This will typically be set to "false".  The default value is "false".  If set to "true", the
+                getter/setter methods will NOT be invoked.  You would want to set this to "true" if
+                the field is lacking a getter or setter method.
             </documentation>
         </annotation>
         <complexType>
@@ -82,6 +87,7 @@
                 <element ref='t:copy-by-references' minOccurs='0'/>
                 <element ref='t:allowed-exceptions' minOccurs='0'/>
                 <element ref='t:variables' minOccurs='0'/>
+                <element ref='t:is-accessible-list' minOccurs='0'/>
             </sequence>
         </complexType>
     </element>
@@ -390,5 +396,6 @@
     <element name='trim-strings' type="boolean"/>
     <element name='bean-factory' type="string"/>
     <element name='relationship-type' type="t:relationship"/>
+    <element name='is-accessible-list' type="boolean"/>
 
 </schema>

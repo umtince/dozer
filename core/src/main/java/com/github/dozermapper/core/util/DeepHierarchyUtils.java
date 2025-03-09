@@ -94,7 +94,7 @@ public final class DeepHierarchyUtils {
                                                                                                      collectionIndex > -1, collectionIndex, theFieldName, null,
                                                                                                      false, null, null, null,
                                                                                                      null, beanContainer,
-                                                                                                     destBeanCreator); //we can pass null as a hint container -
+                                                                                                     destBeanCreator, null); //we can pass null as a hint container -
                                                                                                                         // if genericType return null - we will use hintContainer
                                                                                                                         // in the underlying if
             if (propDescriptor == null) {
